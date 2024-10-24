@@ -14,10 +14,6 @@ public class UserService {
     this.userRepository = userRepository;
   }
 
-  public String handleHelloWorld() {
-    return "hello from service";
-  }
-
   public User handleSaveUser(User user) {
     return this.userRepository.save(user);
   }

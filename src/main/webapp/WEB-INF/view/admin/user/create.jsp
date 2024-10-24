@@ -28,7 +28,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
           <hr />
           <form:form
             method="post"
-            action="/admin/user/create"
+            action="/admin/user"
             modelAttribute="newUser"
           >
             <div class="mb-3">

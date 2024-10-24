@@ -21,22 +21,26 @@ public class UserController {
 
   @RequestMapping("/")
   public String getHomePage(Model model) {
-    List<User> usersList = this.userService.getAllUsersByEmail("meo1@yopmail.com");
-    System.out.println(usersList);
-    String hello = this.userService.handleHelloWorld();
-    model.addAttribute("hello", hello);
     return "index";
   }
 
-  @RequestMapping("/admin/user")
-  public String getUserPage(Model model) {
-    model.addAttribute("newUser", new User());
+  @RequestMapping("/admin/users")
+  public String getUserListPage(Model model) {
+    List<User> usersList = this.userService.getAllUsers();
+    model.addAttribute("usersList", usersList);
+    return "admin/user/users";
+  }
+
+  @RequestMapping("/admin/user/create")
+  public String createUserPage(Model model, @ModelAttribute("newUser") User newUser) {
     return "admin/user/create";
   }
 
   @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-  public String createUserPage(Model model, @ModelAttribute("newUser") User newUser) {
+  public String getUserPage(Model model, @ModelAttribute("newUser") User newUser) {
     this.userService.handleSaveUser(newUser);
+    System.out.println(newUser);
+    // return "redirect:admin/users";
     return "index";
   }
 }
