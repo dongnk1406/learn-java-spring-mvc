@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.service.UserService;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -20,6 +21,8 @@ public class UserController {
 
   @RequestMapping("/")
   public String getHomePage(Model model) {
+    List<User> usersList = this.userService.getAllUsersByEmail("meo1@yopmail.com");
+    System.out.println(usersList);
     String hello = this.userService.handleHelloWorld();
     model.addAttribute("hello", hello);
     return "index";
